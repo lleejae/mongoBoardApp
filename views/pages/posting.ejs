@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <%- include('../partials/head') %>
+  </head>
+  <body>
+    <div class="container">
+      <form class="" enctype="multipart/form-data" action="/posting" method="post">
+        <div class="form-group">
+          <label for="title"></label>
+          <input type="textarea" class="form-control" maxlength="30" name="title" value="" placeholder="제목">
+        </div>
+        <div class="form-group">
+          <label for="writer"></label>
+          <input type="text" class="form-control" maxlength="9" name="writer" value="" placeholder="작성자">
+        </div>
+        <div class="form-group">
+          <label for="body">내용</label>
+          <textarea type="text" class="form-control" maxlength="300" name="body" value="" > </textarea>
+        </div>
+        <div class="row">
+          <div class="form-group col-4">
+            <label for="image">사진</label>
+            <input type="file" class="form-control" name="image" value="">
+          </div>
+          <div class="form-group">
+            <label for="password">비밀번호</label>
+            <input type="password" class="form-control" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" maxlength="12" name="password" value="">
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary" name="button">작성</button>
+      </form>
+    </div>
+  </body>
+</html>
