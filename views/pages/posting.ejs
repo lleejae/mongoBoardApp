@@ -5,31 +5,34 @@
     <%- include('../partials/head') %>
   </head>
   <body>
-    <div class="container">
+    <div class="container mt-md-5 mt-sm-3 mt-2">
+      <h2 class="text-center">글쓰기</h2>
       <form class="" enctype="multipart/form-data" action="/posting" method="post">
         <div class="form-group">
           <label for="title"></label>
-          <input type="textarea" class="form-control" maxlength="30" name="title" value="" placeholder="제목">
+          <input type="text" class="form-control" maxlength="14" name="title" value="" placeholder="제목(필수)" autocomplete="off">
         </div>
         <div class="form-group">
           <label for="writer"></label>
-          <input type="text" class="form-control" maxlength="9" name="writer" value="" placeholder="작성자">
+          <input type="text" class="form-control" maxlength="7" name="writer" value="" placeholder="작성자(필수)" value="ㅇㅇ" autocomplete="off"/>
         </div>
         <div class="form-group">
           <label for="body">내용</label>
-          <textarea type="text" class="form-control" maxlength="300" name="body" value="" > </textarea>
+          <textarea type="text" rows="14" class="form-control" maxlength="3000" name="body" value="" > </textarea>
         </div>
         <div class="row">
           <div class="form-group col-4">
             <label for="image">사진</label>
             <input type="file" class="form-control" name="image" value="">
           </div>
-          <div class="form-group">
+          <div class="form-group col-3">
             <label for="password">비밀번호</label>
-            <input type="password" class="form-control" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" maxlength="12" name="password" value="">
+            <input type="password" class="form-control" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" placeholder="필수" maxlength="12" name="password" value="" />
+          </div>
+          <div class="form-group col-3">
+            <button type="submit" class="btn btn-primary" name="button">작성</button>
           </div>
         </div>
-        <button type="submit" class="btn btn-primary" name="button">작성</button>
       </form>
     </div>
   </body>

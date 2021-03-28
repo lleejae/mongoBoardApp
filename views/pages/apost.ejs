@@ -1,18 +1,42 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <%- include('../partials/head') %>
     <title></title>
+      <%- include('../partials/head') %>
   </head>
   <body>
     <div class="container">
-      <div class="row">
-        <div class="col-2">
-          <h1>제목: <%= post.title %></h1>
-          <p>작성자: <%= post.writer %></p>
-          <h5>내용: <%= post.body %></h5>
+      <div class="row mt-md-5 mt-3">
+        <div class="ml-md-4 ml-2">
+            <div class="">
+              <% if (post.file) { %>
+                <img src="<%= post.file %>" style="width:40%; float:left" class="img-thumbnail mr-3" alt="이미지" />
+              <% } %>
+            </div>
+            <div class="">
+              <h2 class="mb-4 mt-2" ><%= post.title %></h2>
+              <h5 class="">by <%= post.writer %></h5>
+              <% date = post.date %>
+              <p class="text-left"><%= date.getFullYear() %>.<%= date.getMonth() %>.<%= date.getDate() %> | <%= date.getHours() %>시 <%= date.getMinutes() %>분</p>
+              <br>
+              <p><%= post.body %></p>
+            </div>
         </div>
       </div>
+    </div>
+    <div class="container">
+          <div style="" class="row mt-3 ml-2 offset-md-1">
+            <form action="<%= post.id %>" method="post">
+              <div class="form-group d-inline-block">
+                <label for="password">비밀번호</label>
+                <input type="password" class="form-control" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" maxlength="12" name="password" value="" />
+              </div>
+              <div class="form-group d-inline-block">
+                <button class="btn btn-danger" name="button">삭제</button>
+              </div>
+            </form>
+          </div>
+    </div>
     </div>
   </body>
 </html>

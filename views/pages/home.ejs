@@ -11,42 +11,46 @@
   </head>
   <body>
     <div class="container">
-      <h2 class="col border-primary offset-md-5">게시<span class="badge badge-secondary">판</span></h2>
+      <h2 class="col mt-3 offset-md-5 offset-4"><span class="badge"></span><span class="badge badge-primary">게시판</span></h2>
 
-      <div class="row row-cols-6">
-        <% var count = 10 %>
+      <div class="row">
+        <% var count = 0 %>
+        <% var lineFill = 0 %>
         <% posts.forEach(function(post) { %>
-          <% count -= 1 %>
-              <div class="card col-2 ml-4 mt-4">
-                <% if (post.file) {%>
-                  <img src="<%= post.file %>" class="card-img-top mt-3" alt="사진">
-                <% } else { %>
-                  사진없음
-                <% } %>
-
+          <% count += 1 %>
+              <div class="card col-5 col-sm-5 col-md-2  ml-4 mt-4">
+                  <a href="<%= `post/`+post.id %>" class="thumbnail">
+                    <% if (post.file) {%>
+                      <img src="<%= post.file %>" style="width: 100%" class="card-img-top mt-3" alt="사진">
+                    <% } else { %>
+                      <img src="/x.png" style="width: 100%" class="card-img-top mt-3" alt="사진없음">
+                  <% } %>
+                </a>
 
                 <div class="card-body">
-                <% date = post.date %>
-                  <h5 onclick='location.href="<%= `post/`+post.id %>"' class="card-title text-center"><%= post.title %></h5>
+                  <h6 onclick='location.href="<%= `post/`+post.id %>"' style="cursor: pointer" class="card-title text-center text-info"><%= post.title %></h5>
                   <h6 class="card-text text-right"><%= post.writer %></h6>
-                  <p class="card-text text-right"><%= date.getFullYear() %>.<%= date.getMonth() %>.<%= date.getDate() %><br> <%= date.getHours() %>시 <%= date.getMinutes() %>분</p>
-                  <form action="<%= `post/`+post.id %>" method="post">
-                    <button class="btn btn-secondary" name="button">삭제</button>
-                  </form>
                 </div>
+
               </div>
           <% }) %>
-          <% if (count > 0) {%>
-          <% count-- %>
-          <div class="card col-2 ml-4 mt-4">
-            <a href="posting">붙이기</a>
+          <% if (count % 5 > 0) {%>
+          <% count++ %>
+          <div class="card col-5 col-sm-5 col-md-2 ml-4 mt-4">
+            <a href="posting">
+              <img src="/+.png" class="card-img-top mt-3 thumbnail" alt="사진없음"></a>
           </div>
-          <% } while(count>0) {%>
-            <div class="card col-2 ml-4 mt-4">
-              빈곳
+          <% while(count % 5 != 0) {%>
+            <div class="card col-5 col-sm-5 col-md-2 ml-4 mt-4">
+              <img src="/redx.png" class="card-img-top mt-3 mb-3 thumbnail" alt="사진없음">
             </div>
-          <% count-=1 } %>
-
+          <% count+=1 } } else {%>
+            <% count++ %>
+            <div class="card col-5 col-sm-5 col-md-2 ml-4 mt-4">
+              <a href="posting">
+                <img src="/+.png" class="card-img-top mt-3 thumbnail" alt="사진없음"></a>
+            </div>
+          <% } %>
       </div>
 
     </div>
